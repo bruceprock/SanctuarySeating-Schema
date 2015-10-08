@@ -5,29 +5,29 @@ add_shortcode( 'videos', 'videos_shortcode' );
 function videos_shortcode( $atts ) {
     ob_start();
 	 extract( shortcode_atts( array (
-        'category' 			=> '',
-				'quantity' 			=> -1,
-				'p_id' 					=> ''
+        'category' 	=> '',
+	'quantity' 	=> -1,
+	'p_id' 		=> ''
     ), $atts ) );
 	
-	if ($p_id !=''){ 
-	  $query = new WP_Query( array(
-		'post_type' 			=> 'post',
-    'posts_per_page' 	=> $quantity,
-    'order' 					=> 'dsc',
-    'orderby' 				=> 'date',
-		'category_name' 	=> $category,
-		'p'								=> $p_id
+if ($p_id !=''){ 
+	$query = new WP_Query( array(
+	'post_type' 	=> 'post',
+    	'posts_per_page'=> $quantity,
+    	'order' 	=> 'dsc',
+    	'orderby' 	=> 'date',
+	'category_name' => $category,
+	'p'		=> $p_id
 	
     ) );
-	}
-	else
-		  $query = new WP_Query( array(
-		'post_type' 			=> 'post',
-    'posts_per_page' 	=> $quantity,
-    'order' 					=> 'dsc',
-    'orderby' 				=> 'date',
-		'category_name' 	=> $category	
+}
+else
+	$query = new WP_Query( array(
+	'post_type' 	=> 'post',
+    	'posts_per_page'=> $quantity,
+	'order' 	=> 'dsc',
+    	'orderby' 	=> 'date',
+	'category_name' => $category	
     ) );
 
 	 

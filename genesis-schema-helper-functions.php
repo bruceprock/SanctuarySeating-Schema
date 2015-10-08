@@ -5,28 +5,28 @@ add_shortcode( 'videos', 'videos_shortcode' );
 function videos_shortcode( $atts ) {
     ob_start();
 	 extract( shortcode_atts( array (
-        'category' 	=> '',
-		'quantity' 	=> -1,
-		'p_id' 		=> ''
+        'category' 			=> '',
+				'quantity' 			=> -1,
+				'p_id' 					=> ''
     ), $atts ) );
 	
 	if ($p_id !=''){ 
 	  $query = new WP_Query( array(
-		'post_type' 		=> 'post',
-        'posts_per_page' 	=> $quantity,
-        'order' 			=> 'dsc',
-        'orderby' 			=> 'date',
+		'post_type' 			=> 'post',
+    'posts_per_page' 	=> $quantity,
+    'order' 					=> 'dsc',
+    'orderby' 				=> 'date',
 		'category_name' 	=> $category,
-		'p'					=> $p_id
+		'p'								=> $p_id
 	
     ) );
 	}
 	else
 		  $query = new WP_Query( array(
-		'post_type' 		=> 'post',
-        'posts_per_page' 	=> $quantity,
-        'order' 			=> 'dsc',
-        'orderby' 			=> 'date',
+		'post_type' 			=> 'post',
+    'posts_per_page' 	=> $quantity,
+    'order' 					=> 'dsc',
+    'orderby' 				=> 'date',
 		'category_name' 	=> $category	
     ) );
 
@@ -38,15 +38,15 @@ function videos_shortcode( $atts ) {
             <?php 
 			while ( $query->have_posts() ) : $query->the_post();
             global $post;
-				$videoValues 	= get_post_meta( $post->ID, '_yoast_wpseo_video_meta');			
-				$videoValues 	= $videoValues[0];
-				$v_duration 	= $videoValues['duration'];
+				$videoValues 		= get_post_meta( $post->ID, '_yoast_wpseo_video_meta');			
+				$videoValues 		= $videoValues[0];
+				$v_duration 		= $videoValues['duration'];
 				$v_description 	= $videoValues['description'];
-				$v_published 	= $videoValues['publication_date'];
-				$v_thumb 		= $videoValues['thumbnail_loc'];
+				$v_published 		= $videoValues['publication_date'];
+				$v_thumb 				= $videoValues['thumbnail_loc'];
 			
-			$youtube = get_post_meta($post->ID,'youtube',true);
-			$start  = get_post_meta($post->ID,'youtube_start',true);?>
+				$youtube 				= get_post_meta($post->ID,'youtube',true);
+				$start  				= get_post_meta($post->ID,'youtube_start',true);?>
             
             <article itemprop="video" itemscope itemtype="http://schema.org/VideoObject" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             		

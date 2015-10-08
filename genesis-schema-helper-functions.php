@@ -49,24 +49,22 @@ else
 		$start  	= get_post_meta($post->ID,'youtube_start',true);?>
             
             <article itemprop="video" itemscope itemtype="http://schema.org/VideoObject" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            		
-                <a class="youtube cboxElement" href="http://www.youtube.com/embed/<?php echo $youtube; ?>?<?php if ($start != ''){ 
-					echo ('start='. $start .'&'); } ?>rel=0&autoplay=1&wmode=transparent">
-                    <meta itemprop="duration" content="<?php echo $v_duration  ?>" />
-  					<meta itemprop="thumbnailURL" content="<?php echo $v_thumb ?>" />
-                    <meta itemprop="uploadDate" content="<?php echo $v_published ?>" />
-            		<div class="youtubethumb" style="background-image: url(<?php echo $v_thumb ?>)">
-            			<div class="playbutton"></div>
-            		</div>
+            	<a class="youtube cboxElement" href="http://www.youtube.com/embed/<?php echo $youtube; ?>?<?php if ($start != ''){ echo ('start='. $start .'&'); } ?>rel=0&autoplay=1&wmode=transparent">
+		<meta itemprop="duration" content="<?php echo $v_duration  ?>" />
+  		<meta itemprop="thumbnailURL" content="<?php echo $v_thumb ?>" />
+        	<meta itemprop="uploadDate" content="<?php echo $v_published ?>" />
+            	<div class="youtubethumb" style="background-image: url(<?php echo $v_thumb ?>)">
+            		<div class="playbutton"></div>
+            	</div>
             	</a>
             	<h2><a itemprop="url" href="<?php the_permalink(); ?>"><span itemprop="name"><?php the_title(); ?></span></a></h2>
                 <?php 	if (is_page(88) || is_page(8)){
-							echo '<span itemprop="description">' . $v_description . '</span>';
-							}
-						else{
-							echo '<meta itemprop="description" content="' . $v_description . '" />';
-                  			}
-				?>
+				echo '<span itemprop="description">' . $v_description . '</span>';
+				}
+			else{
+				echo '<meta itemprop="description" content="' . $v_description . '" />';
+                  		}
+		?>
             </article>
             <?php endwhile;
             wp_reset_postdata(); ?>
@@ -90,7 +88,7 @@ function default_featured_video_meta_when_not_set( $post ) {
 
 		$videoValues 	= get_post_meta( $post->ID, '_yoast_wpseo_video_meta');			
 		$videoValues 	= $videoValues[0];
-		$v_thumb 		= $videoValues['thumbnail_loc'];
+		$v_thumb 	= $videoValues['thumbnail_loc'];
 			
 		if ($cat_id == 93 || $cat_id == 112 || $cat_id == 111 || $cat_id == 113 || $cat_id == 114 ) { 
 		if ( '' != get_the_post_thumbnail() ){

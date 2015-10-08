@@ -33,20 +33,20 @@ else
 	 
     if ( $query->have_posts() ) { ?>
         <div class="videos" itemscope itemtype="http://schema.org/VideoGallery">
-		<?php if ($category != ''){echo '<meta itemprop="name" content="' . ucwords(str_replace('-',' ',$category)) . '" />';}?>
+	<?php if ($category != ''){echo '<meta itemprop="name" content="' . ucwords(str_replace('-',' ',$category)) . '" />';}?>
         <script>$(document).ready(function(){$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});});</script>
-            <?php 
-			while ( $query->have_posts() ) : $query->the_post();
-            global $post;
-				$videoValues 		= get_post_meta( $post->ID, '_yoast_wpseo_video_meta');			
-				$videoValues 		= $videoValues[0];
-				$v_duration 		= $videoValues['duration'];
-				$v_description 	= $videoValues['description'];
-				$v_published 		= $videoValues['publication_date'];
-				$v_thumb 				= $videoValues['thumbnail_loc'];
+        <?php 
+	while ( $query->have_posts() ) : $query->the_post();
+        	global $post;
+		$videoValues 	= get_post_meta( $post->ID, '_yoast_wpseo_video_meta');			
+		$videoValues 	= $videoValues[0];
+		$v_duration	= $videoValues['duration'];
+		$v_description 	= $videoValues['description'];
+		$v_published 	= $videoValues['publication_date'];
+		$v_thumb 	= $videoValues['thumbnail_loc'];
 			
-				$youtube 				= get_post_meta($post->ID,'youtube',true);
-				$start  				= get_post_meta($post->ID,'youtube_start',true);?>
+		$youtube 	= get_post_meta($post->ID,'youtube',true);
+		$start  	= get_post_meta($post->ID,'youtube_start',true);?>
             
             <article itemprop="video" itemscope itemtype="http://schema.org/VideoObject" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             		
